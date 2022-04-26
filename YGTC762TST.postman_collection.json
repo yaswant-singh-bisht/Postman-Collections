@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "bb9880f0-53b3-414c-b239-f9b271ad0c92",
+		"name": "YGTC762TST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CL_PostKidsCATData",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** CL_PostKidsCATData - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Verify that Success status is true\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var successStatus = jsonObject.CL_PostKidsCATDataOutput.Success;\r",
+							"    if (successStatus == 'true') {\r",
+							"        console.info(\"Request passed\");\r",
+							"    } else {\r",
+							"        var errorMsg = jsonObject.CL_PostKidsCATDataOutput.Message;\r",
+							"        console.error(\"Request failed - \" + errorMsg);\r",
+							"    }\r",
+							"    pm.expect(successStatus).to.be.equal('true');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"console.log(\"********** CL_PostKidsCATData - Request completed **********\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<CL_PostKidsCATDataInput>\r\n    <KidsAttendanceRecords>\r\n        <!-- Order 2017579152 -->\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1012355200</FacilityId>\r\n            <ParticipantId>2053801129</ParticipantId>\r\n            <ParentProduct>89_RD_7392_20_123021_YYD</ParentProduct>\r\n            <ProductCode>89_RD_7392_20_123021_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-30</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1012332400</FacilityId>\r\n            <ParticipantId>2053801129</ParticipantId>\r\n            <ParentProduct>89_RD_7447_20_122921_YYD</ParentProduct>\r\n            <ProductCode>89_RD_7447_20_122921_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-29</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1012332400</FacilityId>\r\n            <ParticipantId>2053801129</ParticipantId>\r\n            <ParentProduct>89_RD_7447_20_122821_YYD</ParentProduct>\r\n            <ProductCode>89_RD_7447_20_122821_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-28</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n        <!-- Order 2017579160 -->\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1006282500</FacilityId>\r\n            <ParticipantId>2053917768</ParticipantId>\r\n            <ParentProduct>82_RD_7364_20_123021_YYD</ParentProduct>\r\n            <ProductCode>82_RD_7364_20_123021_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-30</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1006282500</FacilityId>\r\n            <ParticipantId>2053917768</ParticipantId>\r\n            <ParentProduct>82_RD_7364_20_122921_YYD</ParentProduct>\r\n            <ProductCode>82_RD_7364_20_122921_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-29</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n    </KidsAttendanceRecords>\r\n</CL_PostKidsCATDataInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}CL_PostKidsCATData",
+					"host": [
+						"{{url}}CL_PostKidsCATData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CL_PostKidsCATData_Invalid",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** CL_PostKidsCATData_Invalid - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Verify that Success status is false\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var successStatus = jsonObject.CL_PostKidsCATDataOutput.Success;\r",
+							"    if (successStatus == 'true') {\r",
+							"        console.info(\"Request passed\");\r",
+							"    } else {\r",
+							"        var errorMsg = jsonObject.CL_PostKidsCATDataOutput.Message;\r",
+							"        console.error(\"Request failed - \" + errorMsg);\r",
+							"    }\r",
+							"    pm.expect(successStatus).to.be.equal('false');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"console.log(\"********** CL_PostKidsCATData_Invalid - Request completed **********\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<CL_PostKidsCATDataInput>\r\n    <KidsAttendanceRecords>\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1012355200</FacilityId>\r\n            <ParticipantId>2053801129</ParticipantId>\r\n            <ParentProduct>89_RD_7392_20_123021_YYD</ParentProduct>\r\n            <ProductCode>89_RD_7392_20_123021_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-30</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1006282500</FacilityId>\r\n            <ParticipantId>2053917768</ParticipantId>\r\n            <ParentProduct>82_RD_7364_20_123021_YYD</ParentProduct>\r\n            <ProductCode>82_RD_7364_20_123021_YYD</ProductCode>\r\n            <AttendanceDate>2021-12-30</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n    </KidsAttendanceRecords>\r\n</CL_PostKidsCATDataInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}CL_PostKidsCATData",
+					"host": [
+						"{{url}}CL_PostKidsCATData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CL_PostKidsCATData_SchNotSch",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** CL_PostKidsCATData_SchNotSch - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Verify that Success status is true\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var successStatus = jsonObject.CL_PostKidsCATDataOutput.Success;\r",
+							"    if (successStatus == 'true') {\r",
+							"        console.info(\"Request passed\");\r",
+							"    } else {\r",
+							"        var errorMsg = jsonObject.CL_PostKidsCATDataOutput.Message;\r",
+							"        console.error(\"Request failed - \" + errorMsg);\r",
+							"    }\r",
+							"    pm.expect(successStatus).to.be.equal('true');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"console.log(\"********** CL_PostKidsCATData_SchNotSch - Request completed **********\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<CL_PostKidsCATDataInput>\r\n    <KidsAttendanceRecords>\r\n        <!-- Schedule : Order 2001825705-2 -->\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1035906000</FacilityId>\r\n            <ParticipantId>2051056832</ParticipantId>\r\n            <ParentProduct>77_CC_7350_01_082911_YYD</ParentProduct>\r\n            <ProductCode>77_CC_7350_01_082911_YYD</ProductCode>\r\n            <AttendanceDate>2011-09-06</AttendanceDate>\r\n            <Session>PM</Session>\r\n        </CL_PostKidsCATRecord>\r\n        <!-- Not schedule : Order 2001825705-2 -->\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>1035906000</FacilityId>\r\n            <ParticipantId>2051056832</ParticipantId>\r\n            <ParentProduct>77_CC_7350_01_082911_YYD</ParentProduct>\r\n            <ProductCode>77_CC_7350_01_082911_YYD</ProductCode>\r\n            <AttendanceDate>2011-09-07</AttendanceDate>\r\n            <Session>PM</Session>\r\n        </CL_PostKidsCATRecord>\r\n    </KidsAttendanceRecords>\r\n</CL_PostKidsCATDataInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}CL_PostKidsCATData",
+					"host": [
+						"{{url}}CL_PostKidsCATData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CL_PostKidsCATData_FutureDate",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** CL_PostKidsCATData_FutureDate - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Verify that Success status is false\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var successStatus = jsonObject.CL_PostKidsCATDataOutput.Success;\r",
+							"    if (successStatus == 'true') {\r",
+							"        console.info(\"Request passed\");\r",
+							"    } else {\r",
+							"        var errorMsg = jsonObject.CL_PostKidsCATDataOutput.Message;\r",
+							"        console.error(\"Request failed - \" + errorMsg);\r",
+							"    }\r",
+							"    pm.expect(successStatus).to.be.equal('false');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"console.log(\"********** CL_PostKidsCATData_FutureDate - Request completed **********\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<CL_PostKidsCATDataInput>\r\n    <KidsAttendanceRecords>\r\n        <!-- Schedule : Order 2017614334-2 -->\r\n        <CL_PostKidsCATRecord>\r\n            <FacilityId>2033849400</FacilityId>\r\n            <ParticipantId>2053377255</ParticipantId>\r\n            <ParentProduct>32_SC_7350_04_071122_YYD</ParentProduct>\r\n            <ProductCode>32_SC_7350_04_071122_YYD</ProductCode>\r\n            <AttendanceDate>2022-07-11</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n\t\t<CL_PostKidsCATRecord>\r\n            <FacilityId>2033849400</FacilityId>\r\n            <ParticipantId>2053377255</ParticipantId>\r\n            <ParentProduct>32_SC_7350_04_071122_YYD</ParentProduct>\r\n            <ProductCode>32_SC_7350_04_071122_YYD</ProductCode>\r\n            <AttendanceDate>2022-07-12</AttendanceDate>\r\n            <Session>DAILY</Session>\r\n        </CL_PostKidsCATRecord>\r\n    </KidsAttendanceRecords>\r\n</CL_PostKidsCATDataInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}CL_PostKidsCATData",
+					"host": [
+						"{{url}}CL_PostKidsCATData"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Personify6",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "amit.ghildiyal",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"url\", \"https://ygtc762tstebiz.personifycloud.com/PersonifyDataServices/PersonifyData.svc/\"); ",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

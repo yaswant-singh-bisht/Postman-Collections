@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "004ab2ad-e8ed-4853-a55b-34c49b69cbc3",
+		"name": "SIAM770DEV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "StripeCreateReceipt_InvalidPONo",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** StripeCreateReceipt_InvalidPONo - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Operation Result is False\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var opResult = jsonObject.StripeCreateReceiptOutput.operationResult;\r",
+							"    pm.expect(opResult).to.be.equal('false');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that error message is correct\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.StripeCreateReceiptOutput.ErrorMessage;\r",
+							"    pm.expect(errMsg).to.be.contains('PO Number is not valid');\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code != '200') {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.error.message;\r",
+							"    console.error(errMsg);\r",
+							"    var innErr = jsonObject.error.innererror;\r",
+							"    console.error(innErr);\r",
+							"}\r",
+							"\r",
+							"console.log(\"********** StripeCreateReceipt_InvalidPONo - Request completed **********\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<StripeCreateReceiptInput>\r\n\t<PONumber>Stripe1XXXXXXX</PONumber>\r\n\t<ReceiptAmount>10</ReceiptAmount>\r\n\t<ReceiptType>CASH</ReceiptType>\r\n\t<Comments>Test Stripe</Comments>\r\n</StripeCreateReceiptInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}StripeCreateReceipt",
+					"host": [
+						"{{url}}StripeCreateReceipt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StripeCreateReceipt_ZeroAmount",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** StripeCreateReceipt_ZeroAmount - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Operation Result is False\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var opResult = jsonObject.StripeCreateReceiptOutput.operationResult;\r",
+							"    pm.expect(opResult).to.be.equal('false');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that error message is correct\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.StripeCreateReceiptOutput.ErrorMessage;\r",
+							"    pm.expect(errMsg).to.be.contains('Invalid Receipt Amount');\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code != '200') {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.error.message;\r",
+							"    console.error(errMsg);\r",
+							"    var innErr = jsonObject.error.innererror;\r",
+							"    console.error(innErr);\r",
+							"}\r",
+							"\r",
+							"console.log(\"********** StripeCreateReceipt_ZeroAmount - Request completed **********\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<StripeCreateReceiptInput>\r\n\t<PONumber>7242518249</PONumber>\r\n\t<ReceiptAmount>0</ReceiptAmount>\r\n\t<ReceiptType>CASH</ReceiptType>\r\n\t<Comments>Test Stripe</Comments>\r\n</StripeCreateReceiptInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}StripeCreateReceipt",
+					"host": [
+						"{{url}}StripeCreateReceipt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StripeCreateReceipt_NegativeAmount",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** StripeCreateReceipt_NegativeAmount - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Operation Result is False\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var opResult = jsonObject.StripeCreateReceiptOutput.operationResult;\r",
+							"    pm.expect(opResult).to.be.equal('false');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that error message is correct\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.StripeCreateReceiptOutput.ErrorMessage;\r",
+							"    pm.expect(errMsg).to.be.contains('Invalid Receipt Amount');\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code != '200') {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.error.message;\r",
+							"    console.error(errMsg);\r",
+							"    var innErr = jsonObject.error.innererror;\r",
+							"    console.error(innErr);\r",
+							"}\r",
+							"\r",
+							"console.log(\"********** StripeCreateReceipt_NegativeAmount - Request completed **********\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<StripeCreateReceiptInput>\r\n\t<PONumber>7242518249</PONumber>\r\n\t<ReceiptAmount>-10</ReceiptAmount>\r\n\t<ReceiptType>CASH</ReceiptType>\r\n\t<Comments>Test Stripe</Comments>\r\n</StripeCreateReceiptInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}StripeCreateReceipt",
+					"host": [
+						"{{url}}StripeCreateReceipt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StripeCreateReceipt_InvalidReceiptType",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** StripeCreateReceipt_InvalidReceiptType - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Operation Result is False\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var opResult = jsonObject.StripeCreateReceiptOutput.operationResult;\r",
+							"    pm.expect(opResult).to.be.equal('false');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that error message is correct\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.StripeCreateReceiptOutput.ErrorMessage;\r",
+							"    pm.expect(errMsg).to.be.contains('Invalid Receipt Type');\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code != '200') {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.error.message;\r",
+							"    console.error(errMsg);\r",
+							"    var innErr = jsonObject.error.innererror;\r",
+							"    console.error(innErr);\r",
+							"}\r",
+							"\r",
+							"console.log(\"********** StripeCreateReceipt_InvalidReceiptType - Request completed **********\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<StripeCreateReceiptInput>\r\n\t<PONumber>7242518249</PONumber>\r\n\t<ReceiptAmount>10</ReceiptAmount>\r\n\t<ReceiptType>XXXXX</ReceiptType>\r\n\t<Comments>Test Stripe</Comments>\r\n</StripeCreateReceiptInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}StripeCreateReceipt",
+					"host": [
+						"{{url}}StripeCreateReceipt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StripeCreateReceipt_ValidReceipt",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"console.log(\"********** StripeCreateReceipt_ValidReceipt - Request started **********\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify that Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Response time is less than 4000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify that Operation Result is True\", function() {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var opResult = jsonObject.StripeCreateReceiptOutput.operationResult;\r",
+							"    var receiptNo = jsonObject.StripeCreateReceiptOutput.ReceiptNumber;\r",
+							"    var orderNo = jsonObject.StripeCreateReceiptOutput.OrderNumber;\r",
+							"    \r",
+							"    pm.expect(opResult).to.be.equal('true');\r",
+							"    console.info(\"Receipt \" + receiptNo + \" applied to order - \" + orderNo);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code != '200') {\r",
+							"    var jsonObject = xml2Json(responseBody);\r",
+							"    var errMsg = jsonObject.error.message;\r",
+							"    console.error(errMsg);\r",
+							"    var innErr = jsonObject.error.innererror;\r",
+							"    console.error(innErr);\r",
+							"}\r",
+							"\r",
+							"console.log(\"********** StripeCreateReceipt_ValidReceipt - Request completed **********\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<StripeCreateReceiptInput>\r\n\t<PONumber>7242518251</PONumber>\r\n\t<ReceiptAmount>10.00</ReceiptAmount>\r\n\t<ReceiptType>SRCK</ReceiptType>\r\n\t<Comments>Test Stripe comments</Comments>\r\n</StripeCreateReceiptInput>\r\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}StripeCreateReceipt",
+					"host": [
+						"{{url}}StripeCreateReceipt"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"url\", \"http://siam770devebiz.india.rsystems.com/PersonifyDataServices/PersonifyData.svc/\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
